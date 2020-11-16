@@ -1,0 +1,31 @@
+name: cotacao
+description: A project to view money day.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  cupertino_icons: ^1.0.0
+  dio: ^3.0.10
+  google_fonts: ^1.1.1
+  flutter_svg: ^0.19.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  
+  mockito: ^4.1.3
+  test: ^1.15.5
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images
+    - assets/icons

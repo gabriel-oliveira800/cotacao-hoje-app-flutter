@@ -9,33 +9,33 @@ enum HomeState { inital, loading, error, success }
 class HomeController {
   final RepositoryI repository;
 
-  List<CurrenciesModel> currencies;
-  ValueNotifier _homeState = ValueNotifier(HomeState.inital);
+  List<CurrenciesModel> currencies = [];
+  ValueNotifier homeState = ValueNotifier(HomeState.inital);
 
   HomeController(this.repository);
-  
 
   Future<void> getCurrentiesApi() async {
-    _homeState.value = HomeState.loading;
+    homeState.value = HomeState.loading;
+    currencies = [];
 
     try {
       var response = await repository.getCurrencies();
 
       response.remove('source');
-      response.values
-          .map((value) => currencies.add(CurrenciesModel.fromJson(value)));
+      response.values.map((value) => currencies.add(CurrenciesModel.fromJson(value))).toList();
 
-      _homeState.value = HomeState.success;
+      homeState.value = HomeState.success;
     } on DioError catch (e) {
-      _homeState.value = HomeState.error;
+      homeState.value = HomeState.error;
       throw Failure(
         message: 'Falha de conexão: ${e.message}.\nPor favor tente novamente.',
       );
     } catch (e) {
-      _homeState.value = HomeState.error;
+      homeState.value = HomeState.error;
+      print(e);
       throw Failure(message: 'Error desconhecido.\nPor favor tente novamente.');
     }
   }
 
-  HomeState get state => _homeState.value;
+  HomeState get state => homeState.value;
 }

@@ -33,11 +33,18 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget homeBody() {
-    return ListView.builder(
-      itemBuilder: (_, index) {
-        var item = controller.currencies[index];
-        return CurrenciesItem(currencies: item);
-      },
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 28.0),
+      child: ListView.builder(
+        itemCount: controller.currencies.length,
+        itemBuilder: (_, index) {
+          var item = controller.currencies[index];
+          return Padding(
+            child: CurrenciesItem(currencies: item),
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+          );
+        },
+      ),
     );
   }
 
@@ -45,6 +52,7 @@ class _HomePageState extends State<HomePage> {
     switch (controller.state) {
       case HomeState.error:
         return ErrorChild(
+          callback: controller.getCurrentiesApi,
           error: 'Não possivél carrega os dados.\nPor favor tente novamente.',
         );
       case HomeState.loading:
@@ -72,9 +80,16 @@ class _HomePageState extends State<HomePage> {
             onPressed: () => viewLicenses(context),
             icon: Icon(Icons.help, color: Colors.white),
           ),
+          IconButton(
+            onPressed: () => controller.getCurrentiesApi(),
+            icon: Icon(Icons.refresh_outlined, color: Colors.white),
+          ),
         ],
       ),
-      body: statemanagerChild(),
+      body: AnimatedBuilder(
+        animation: controller.homeState,
+        builder: (_, __) => statemanagerChild(),
+      ),
     );
   }
 

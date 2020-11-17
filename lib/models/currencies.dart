@@ -9,9 +9,9 @@ class CurrenciesModel {
   factory CurrenciesModel.fromJson(Map<String, dynamic> json) {
     return CurrenciesModel(
       name: json['name'],
-      buy: double.tryParse(json['buy']),
-      sell: double.tryParse(json['sell']),
-      variation: double.tryParse(json['variation']),
+      buy: json['buy'],
+      sell: json['sell'],
+      variation: json['variation'],
     );
   }
 

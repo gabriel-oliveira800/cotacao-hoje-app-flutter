@@ -9,47 +9,49 @@ class CurrenciesItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: height,
       width: double.infinity,
       child: Card(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Text(
-                    getFormatedCurrencies(currencies.name),
-                    style: TextStyle(
-                      color: Colors.deepOrange,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
+                child: Row(
+                  children: [
+                    Text(
+                      _getFormatedCurrencies(currencies.name),
+                      style: TextStyle(
+                        color: Colors.deepOrange,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  SizedBox(width: 12.0),
-                  Text(
-                    currencies.buy.toStringAsFixed(2),
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black.withOpacity(0.87),
+                    SizedBox(width: 12.0),
+                    Text(
+                      currencies.buy.toStringAsFixed(2),
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black.withOpacity(0.87),
+                      ),
                     ),
-                  ),
-                  Spacer(),
-                  Text(
-                    currencies.name,
-                    style: TextStyle(color: Colors.black54),
-                  ),
-                  SizedBox(width: 6.0),
-                  Icon(Icons.grade)
-                ],
+                    Spacer(),
+                    Text(
+                      currencies.name,
+                      style: TextStyle(color: Colors.black54),
+                    ),
+                    SizedBox(width: 6.0),
+                    Icon(Icons.grade)
+                  ],
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: RichText(
-                text: TextSpan(
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: RichText(
+                  text: TextSpan(
                     text: 'variação: ',
                     style: TextStyle(
                       letterSpacing: 1.2,
@@ -65,16 +67,18 @@ class CurrenciesItem extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ]),
+                    ],
+                  ),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
 
-  String getFormatedCurrencies(String value) {
+  String _getFormatedCurrencies(String value) {
     if (value.contains('Dollar'))
       return 'US\$';
     else if (value.contains('Euro'))

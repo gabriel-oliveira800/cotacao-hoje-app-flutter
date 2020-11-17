@@ -8,23 +8,14 @@ class RepositoryImp implements RepositoryI {
   const RepositoryImp(this._dio);
 
   Future<Map<String, dynamic>> getCurrencies() async {
-    try {
-      var response = await _dio.get(Utils.pathToCurrencies);
+    var response = await _dio.get(Utils.pathToCurrencies);
 
-      if (response.statusCode == 200) {
-        return response.data['results']['currencies'];
-      } else {
-        throw Failure(
-          message: 'Não possivél carrega os dados.\nPor favor tente novamente.',
-        );
-      }
-    } on DioError catch (e) {
+    if (response.statusCode == 200) {
+      return response.data['results']['currencies'];
+    } else {
       throw Failure(
-        message: 'Falha de conexão: ${e.message}.\nPor favor tente novamente.',
+        message: 'Não possivél carrega os dados.\nPor favor tente novamente.',
       );
-    } catch (e) {
-      print(e);
-      throw Failure(message: 'Error desconhecido.\nPor favor tente novamente.');
     }
   }
 }

@@ -50,6 +50,9 @@ $ flutter run
 $flutter build apk
 ```
 
+O Cotação Hoje já esta em produção acesse agora a Google Play e instale em celular.
+<img src="screenshoot/google-play.svg" width="100%">
+
 ## Recursos
 <ul>
   <li>Flutter version: 1.23.0 - channel beta</li>

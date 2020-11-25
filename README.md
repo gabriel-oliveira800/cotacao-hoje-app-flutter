@@ -51,7 +51,7 @@ $flutter build apk
 ```
 
 O Cotação Hoje já esta em produção acesse agora a Google Play e instale em celular.
-<img src="screenshoot/google-play.svg" width="100%">
+<a href="https://play.google.com/store?hl=pt_BR&gl=US"><img src="screenshoot/google-play.svg" width="68px"><a/>
 
 ## Recursos
 <ul>
